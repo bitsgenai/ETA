@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Prediction - Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('static/images/home.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            animation: fadeIn 2s;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            font-weight: bold;
+            margin-bottom: 30px;
+            animation: slideDown 1s;
+        }
+        .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100px); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Option Below</h1>
+        <button onclick="location.href='/single-customer'" class="btn btn-primary">Single Customer</button>
+        <button onclick="location.href='/multiple-customers'" class="btn btn-secondary">Multiple Customers</button>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

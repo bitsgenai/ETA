@@ -1,0 +1,11 @@
+numpy
+scikit-learn
+requests
+flask
+gunicorn
+matplotlib
+pandas
+xgboost
+pytest
+tox
+electricity_predictor

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('static/images/csv_img.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            animation: fadeIn 2s;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            font-weight: bold;
+            margin-bottom: 30px;
+            animation: slideDown 1s;
+        }
+        .form-group {
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #f75110;
+            border: none;
+            animation: pulse 1.5s infinite;
+        }
+        .btn-primary:hover {
+            background-color: #f75110;
+        }
+        .note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #f75110;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100px); }
+            to { transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSV Prediction</h1>
+        <form method="post" action="/predict" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload CSV File:</label>
+                <input type="file" class="form-control-file" id="file" name="file" accept=".csv" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        {% if error %}
+        <div class="alert alert-danger mt-3" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        <p class="note">Your CSV file will be exported to the local directory.</p>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
