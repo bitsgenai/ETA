@@ -31,10 +31,13 @@ def predict_one_customer():
 
     rawData=rawData.loc[(rawData['contract']==contract_no)]
 
-    rawData['fraud_consumption'] = new_consumption
+    rawData['new_consumption'] = new_consumption
 
     print("rawData : ",rawData)
-    required_columns_model = ['contract','invoice_type','billing_type', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'fraud_consumption',
+    #required_columns_model = ['contract','invoice_type','billing_type', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'new_consumption',
+                   #'SERVICE_STATUS', 'POWER_SUSCRIBED', 'TARIFF', 'ACTIVITY_CMS', 'READWITH', 'SEGMENT',
+                   #'agency', 'zone','block']
+    required_columns_model = ['contract', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'invoice_type','billing_type','new_consumption',
                    'SERVICE_STATUS', 'POWER_SUSCRIBED', 'TARIFF', 'ACTIVITY_CMS', 'READWITH', 'SEGMENT',
                    'agency', 'zone','block']
     rawData.replace('', np.nan, inplace=True)
@@ -96,12 +99,12 @@ def predict():
     df.replace('', np.nan, inplace=True)
     #df.set_index('contract', inplace = True)
 
-    df_merged = df.merge(rawData, on='contract', how='right')
-    df_merged = df_merged.rename(columns = {'fraud_consumption_x':'fraud_consumption'})
+    df_merged = df.merge(rawData, on='contract', how='left')
+    df_merged = df_merged.rename(columns = {'new_consumption_x':'new_consumption'})
 
 
     
-    required_columns_model = ['contract','invoice_type','billing_type', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'fraud_consumption',
+    required_columns_model = ['contract', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'invoice_type','billing_type','new_consumption',
                    'SERVICE_STATUS', 'POWER_SUSCRIBED', 'TARIFF', 'ACTIVITY_CMS', 'READWITH', 'SEGMENT',
                    'agency', 'zone','block']
     df_merged.replace('', np.nan, inplace=True)
@@ -122,10 +125,10 @@ def predict():
             predictions[i] = 0
 
     pred = [round(value) for value in predictions]
-    df_merged['prediction'] = pred
+    df['prediction'] = pred
 
     output_filename = 'predictions.csv'
-    df_merged.to_csv(output_filename, index=True)
+    df.to_csv(output_filename, index=True)
     return send_file(output_filename, as_attachment=True)
 
 if __name__ == '__main__':
