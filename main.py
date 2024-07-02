@@ -100,6 +100,9 @@ def predict():
     #df.set_index('contract', inplace = True)
 
     df_merged = df.merge(rawData, on='contract', how='left')
+
+    df_merged = df_merged.drop(['new_consumption_y'], axis=1)
+    
     df_merged = df_merged.rename(columns = {'new_consumption_x':'new_consumption'})
 
 
